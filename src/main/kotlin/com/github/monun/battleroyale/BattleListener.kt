@@ -48,6 +48,10 @@ class BattleListener(
             if (battle.rank == -1) {
                 if (p.fireTicks > 0 || p.killer != null) {
                     process.rank(battle)
+
+                    p.killer?.let {
+                        process.player(it)?.kills?.inc()
+                    }
                 }
             }
 
