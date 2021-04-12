@@ -14,7 +14,7 @@ class BattleListener(
 ) : Listener {
     @EventHandler
     fun onPlayerLogin(event: PlayerLoginEvent) {
-        val player = event.player
+        val player = event.player; if (player.isOp) return
         val battle = process.player(player)
         if (battle == null) {
             event.disallow(PlayerLoginEvent.Result.KICK_WHITELIST, text("게임 참가자가 아닙니다."))
