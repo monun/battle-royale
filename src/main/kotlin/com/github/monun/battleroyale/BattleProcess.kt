@@ -65,7 +65,7 @@ class BattleProcess(
         currentRank = survivePlayers.count()
 
         Bukkit.getOnlinePlayers().forEach { 
-            if (it.uniqueId !in players) {
+            if (!it.isOp && it.uniqueId !in players) {
                 it.kick(text("게임 참가자가 아닙니다."))
             }
         }
