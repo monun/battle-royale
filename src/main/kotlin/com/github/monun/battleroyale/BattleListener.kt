@@ -44,8 +44,14 @@ class BattleListener(
         event.quitMessage(null)
 
         val p = event.player
-        process.player(p)?.let {
-            it.player = null
+        process.player(p)?.let { battle ->
+            if (battle.rank == -1) {
+                if (p.fireTicks > 0 || p.killer != null) {
+                    process.rank(battle)
+                }
+            }
+
+            battle.player = null
         }
     }
 
